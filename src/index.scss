@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import 'animate.css';
+@import '~loaders.css/src/animations/pacman.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #BAFF39;
+  --secondary-color: #6E6E6E;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  overflow: hidden;
+}
+
+input, textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* home page letter animation */
+.text-animate {
+  display: inline-block;
+  opacity: 0;
+  animation: bounceIn 1s 1s;
+  animation-fill-mode: forwards;
+  min-width: 10px;
+
+}
+
+.text-animate-hover {
+  min-width: 10px;
+  display: inline-block;
+  animation-fill-mode: both;
+
+  &:hover {
+    animation: rubberBand 1s;
+    color: #BAFF39;
+  }
+}
+
+@for $i from 1 through 35 {
+  .text-animate._#{$i} {
+    animation-delay: #{$i / 10}s;
+  }
+}
+
+/* about page */
+.stage-cube-cont {
+  width: 50%;
+  height: 100%;
+  top: 0;
+  padding-top: 10%;
+  margin-left: 0;
+  position: absolute;
+  right: 200px;
+  overflow: hidden;
+}
+
+.cubespinner {
+  animation-name: spincube;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 12s;
+  transform-style: preserve-3d;
+  transform-origin: 100px 100px 0;
+  margin-left: calc(50% - 100px);
+
+  div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 0px lightyellow;
+  }
+
+  .face1 {
+    transform: translateZ(100px);
+  }
+
+  .face2 {
+    transform: rotateY(90deg) translateZ(100px);
+  }
+
+  .face3 {
+    transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+  }
+
+  .face4 {
+    transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+  }
+
+  .face5 {
+    transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
+  }
+
+  .face6 {
+    transform: rotateX(-90deg) translateZ(100px);
+  }
+}
+
+@keyframes spincube {
+  from,
+  to {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  16% {
+    transform: rotateY(-90deg)
+  }
+  33% {
+    transform: rotateY(-90deg) rotateZ(90deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotateZ(90deg);
+  }
+  66% {
+    transform: rotateY(-270deg) rotateZ(90deg);
+  }
+  83% {
+    transform: rotateX(90deg);
+  }
+}
+
+/* loader configuration */
+.loader-active {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 300px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 75px;
+  height: 75px;
+  animation: fadeOut 1s 1s;
+  animation-fill-mode: forwards;
+}
+
+/* send mail */
+.flat-button {
+  float: right;
+  color: #BAFF39;
+  background-color: transparent;
+  font-family: sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  letter-spacing: 4px;
+  padding: 8px 16px;
+  border: 1px solid #BAFF39;
+  animation: fadeIn 1s 1.8s backwards;
+  cursor: pointer;
+}
+
+.flat-button:hover {
+  background-color: #BAFF39;
+  color: #000;
+}

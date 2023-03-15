@@ -1,0 +1,238 @@
+1 what is the role of system call in an operating systern? Write down the major differences
+between follorving types operating system.
+a) Batch sysiem
+b) interactive sysiem
+c) Realtime system
+ri) Time sharing sysien
+
+System calls are a crucial component of an operating system, as they provide a way for applications to request services from the operating system. System calls allow an application to access hardware resources, such as the CPU, memory, and storage devices. Examples of common system calls include opening a file, writing to a file, reading from a file, creating a new process, and terminating a process.
+
+Here are the major differences between the following types of operating systems:
+
+a) Batch System:
+
+In a batch system, jobs are submitted to the computer as batches, and they are processed without any user interaction.
+There is no direct interaction with the user in a batch system.
+The operating system executes jobs one after the other, and the output is typically sent to a printer or stored on a disk.
+b) Interactive System:
+
+An interactive system allows users to interact directly with the computer.
+The user can enter commands and receive immediate feedback from the computer.
+The operating system responds quickly to user input, and the user can control the order in which tasks are performed.
+c) Real-time System:
+
+A real-time system is designed to respond to events in a timely manner.
+These systems are typically used in applications where a delay in response time can cause serious problems, such as in industrial control systems or air traffic control systems.
+The operating system must be able to respond to events quickly and predictably.
+d) Time-Sharing System:
+
+A time-sharing system allows multiple users to share the resources of a single computer.
+Each user is given a time slice, during which they can execute their tasks.
+The operating system switches between tasks quickly, giving each user the illusion of having their own dedicated computer
+
+2.state 5- State process model. paxadi ko qn numerical baki xa
+
+The Five-State Process Model is a commonly used process model in operating systems, which describes the different states that a process can be in. The five states are:
+
+New: In this state, a new process has been created but has not yet been admitted to the system by the operating system.
+
+Ready: In this state, the process is waiting to be assigned to a processor for execution.
+
+Running: In this state, the process is being executed on a processor.
+
+Blocked: In this state, the process is unable to proceed because it is waiting for some external event, such as the completion of an I/O operation or the release of a resource.
+
+Terminated: In this state, the process has finished executing and has been removed from the system.
+
+
+
+
+3 What is critical section problem? Why must the executing the critical section be
+mutually exclusive? Describe how race condition occurs in producer- consumer problem
+and use semaphore to solve it.
+
+The critical section problem is a situation in multi-process systems where multiple processes or threads share a common resource, and some of the processes or threads may try to access the resource simultaneously. The critical section is the part of the code where the shared resource is accessed. The critical section problem arises when two or more processes or threads execute their critical section at the same time, leading to unexpected or incorrect behavior.
+
+To ensure the correctness of the system, the execution of the critical section must be mutually exclusive, which means that at any given time, only one process or thread is allowed to execute the critical section. This is usually achieved through synchronization mechanisms like locks or semaphores.
+
+In the producer-consumer problem, there are two processes: the producer and the consumer, which share a common buffer. The producer produces data and stores it in the buffer, and the consumer consumes the data from the buffer. The problem is to ensure that the producer does not produce data when the buffer is full, and the consumer does not consume data when the buffer is empty.
+
+A race condition occurs when the producer and the consumer access the buffer at the same time, leading to inconsistent or incorrect behavior. For example, if the producer and the consumer access the buffer concurrently, the producer may overwrite the data that the consumer is about to consume, or the consumer may read the same data twice.
+
+Semaphores can be used to solve the producer-consumer problem. A semaphore is a synchronization mechanism that can be used to enforce mutual exclusion and synchronize the access to shared resources. In the producer-consumer problem, two semaphores can be used: a mutex semaphore to enforce mutual exclusion on the buffer and a counting semaphore to keep track of the number of empty slots in the buffer.
+
+The producer acquires the mutex semaphore and waits on the counting semaphore when the buffer is full. When there is an empty slot in the buffer, the producer puts the data in the buffer, signals the counting semaphore to increase the number of empty slots, and releases the mutex semaphore.
+
+Similarly, the consumer acquires the mutex semaphore and waits on the counting semaphore when the buffer is empty. When there is data in the buffer, the consumer takes the data from the buffer, signals the counting semaphore to decrease the number of empty slots, and releases the mutex semaphore
+
+
+
+
+
+4 Define page fault and demand paging, Consider Iogical address spaces of eight pages of
+1024 words, each mapprd onto a physical memcry of 32 frames then, 14+6] a) How many bits are in logical address and physical address?
+b) How paging rvill be donec
+
+Page Fault:
+A page fault occurs when a process tries to access a page that is not present in the main memory. When a page fault occurs, the operating system must fetch the required page from the secondary memory (disk) and load it into the main memory.
+
+Demand Paging:
+Demand paging is a technique used by operating systems to reduce the amount of memory required to run a process. Instead of loading the entire process into the main memory at once, the operating system loads only those pages that are required for the current execution of the process. This is done to conserve memory and improve the overall performance of the system.
+
+a) The logical address space consists of 8 pages of 1024 words each, which means the logical address space is 8 * 1024 = 8192 words. Since each word is 2 bytes, the logical address space is 8192 * 2 = 16384 bytes. Therefore, the number of bits in the logical address is log2(16384) = 14 bits.
+
+The physical memory consists of 32 frames, where each frame can hold 1024 words. Therefore, the physical memory can hold 32 * 1024 = 32768 words. Since each word is 2 bytes, the physical memory can hold 32768 * 2 = 65536 bytes. Therefore, the number of bits in the physical address is log2(65536) = 16 bits.
+
+b) Paging will be done by dividing the logical address space into pages of size 1024 words each. Since the logical address space consists of 8 pages, the page size is 1024 words, and each page is 1024 * 2 = 2048 bytes. The page table will contain 8 entries, each of which will map a page number to a frame number in the physical memory.
+
+When a process tries to access a memory location, the operating system first checks if the required page is present in the main memory. If the page is not present, a page fault occurs, and the operating system fetches the required page from the secondary memory and loads it into an available frame in the main memory. The page table is updated to map the page number to the new frame number in the main memory.
+
+Once the required page is present in the main memory, the operating system can translate the logical address into a physical address by combining the frame number and the offset within the frame. Since each frame can hold 1024 words, the offset within the frame requires 10 bits (2^10 = 1024). Therefore, the physical address can be represented as a concatenation of the frame number (16 bits) and the offset within the frame (10 bits).
+
+
+
+
+
+5 What is the role of ille system? How can files be Implemented? List any three of them
+with advantagcs and disadvantages ofeac
+
+The file system is an integral part of an operating system that manages and organizes files and directories on a storage device. It provides a logical and organized way to access and store data on a storage device.
+
+Files can be implemented in various ways, some of which are:
+
+Contiguous Allocation:
+In contiguous allocation, files are stored in contiguous blocks on the storage device. This method is easy to implement and provides fast access to files. However, it suffers from external fragmentation, where small gaps between files can lead to wasted space.
+
+
+Linked List Allocation:
+Linked List allocation solves all problems of contiguous allocation. In linked list allocation, each file is considered as the linked list of disk blocks. However, the disks blocks allocated to a particular file need not to be contiguous on the disk. Each disk block allocated to a file contains a pointer which points to the next disk block allocated to the same file.
+
+Linked List Allocation using Index:
+To overcome the disadvantages of linked list allocation, a variation called linked list allocation using index is used. In this method, each file has an associated index block, which contains a list of pointers to the blocks that make up the file. This allows for faster access to files, as the index block can be accessed quickly to find the location of the desired block. However, this method still suffers from fragmentation, as the blocks allocated to a file may not be contiguous.
+
+Inodes (Index Node):
+To overcome the fragmentation issue of linked list allocation and linked list allocation using index, many file systems use a data structure called an inode (index node). Inodes are used to store information about each file, such as the file size, ownership, permissions, and the location of the file's data blocks on the disk. Each inode has a fixed size and contains a list of pointers to the data blocks that make up the file. Inodes are typically stored in a fixed location on the disk, so they can be accessed quickly.
+
+
+Advantages and disadvantages of each implementation:
+
+Contiguous Allocation:
+Advantages:
+Fast access to files
+Simple implementation
+Efficient for large files
+
+Disadvantages:
+
+Suffers from external fragmentation
+Wastes space due to small gaps between files
+Difficult to expand or shrink a file
+
+Linked list allocation
+Advantages
+There is no external fragmentation with linked allocation.
+Any free block can be utilized in order to satisfy the file block requests.
+File can continue to grow as long as the free blocks are available.
+Directory entry will only contain the starting block address.
+
+Disadvantages
+Random Access is not provided.
+Pointers require some space in the disk blocks.
+Any of the pointers in the linked list must not be broken otherwise the file will get corrupted.
+Need to traverse each block.
+
+Advantages of Linked List Allocation Using an Index:
+
+Faster access: Accessing an element using an index is faster than traversing through the entire list.
+
+Reduced memory overhead: Using an index separately reduces the memory overhead required for the pointers that connect the elements in the linked list.
+
+Flexibility: Using an index still provides flexibility in terms of adding or removing elements from the list, as it only requires updating pointers to maintain the integrity of the list.
+
+Random access: Random access to an element in the list is possible using the index.
+
+Disadvantages 
+
+Additional storage overhead: Using an index separately requires additional storage overhead to store the indices, which could be significant if the list is large.
+
+Increased complexity: Using an index separately increases the complexity of the linked list implementation, which could make it harder to understand and maintain.
+
+Index maintenance: The index must be maintained properly, which could be difficult in cases where elements are added or removed frequently.
+
+Memory fragmentation: Linked list allocation can result in memory fragmentation, where there are small chunks of memory scattered around the memory space, making it difficult to allocate large contiguous blocks of memory.
+
+
+
+what are the principles of L/O software? Suppose that a disk drive has 100 cyiinders,
+numbered 0 to 99" The drive is currently serving a request at cylinder 43 and previous
+request was at cylinder 25. The queue of pending request, in FIF0 order
+is:86, 70, 13,74,48 ,9,22,50, 30 
+Produce the schedules to satisfy all the pending requests for each of the following disk
+scheduling algorithms: 1. FCFS 2. C-SCAN 3. SSTF
+
+Principles of L/O (Input/Output) Software:
+
+Device independence: L/O software should be designed in such a way that it can work with different types of devices, without being dependent on their specific characteristics or hardware interface.
+
+Uniform naming: L/O software should provide a standard naming convention to identify devices, files, and other resources, regardless of the underlying hardware or operating system.
+
+Error handling: L/O software should be designed to handle errors that can occur during I/O operations, such as device failures, data corruption, and network connectivity issues.
+
+Synchronous read/write at application level: L/O software should provide synchronous I/O operations, where the application is blocked until the I/O operation is completed, ensuring the consistency of data.
+
+Buffering: L/O software should use buffers to hold data temporarily during I/O operations, to minimize the number of I/O operations and improve performance.
+
+Sharable vs dedicated devices: L/O software should support both sharable and dedicated devices. Sharable devices can be used by multiple applications simultaneously, while dedicated devices are used exclusively by a single application.
+
+
+Disk Scheduling Algorithms:
+
+FCFS (First-Come, First-Served):
+Queue: 86, 70, 13, 74, 48, 9, 22, 50, 30
+Schedule: 43, 86, 70, 13, 74, 48, 9, 22, 50, 30
+
+C-SCAN (Circular SCAN):
+Queue: 86, 70, 13, 74, 48, 9, 22, 50, 30
+Schedule: 43, 48, 50, 70, 74, 86, 9, 13, 22, 30
+
+SSTF (Shortest Seek Time First):
+Queue: 86, 70, 13, 74, 48, 9, 22, 50, 30
+Schedule: 43, 48, 50, 70, 74, 86, 22, 13, 9, 30
+
+
+7 ko answer pic ma xa
+
+8.Describe, how access control list is used? What are the roles of system administrator for
+change management?
+
+Access Control List (ACL) is a mechanism used by operating systems and other software applications to control access to resources such as files, folders, and network resources. An ACL is a list of permissions attached to a resource, which specifies the users or groups that are allowed or denied access to that resource.
+
+The ACL typically includes entries for each user or group that has been granted permissions to access the resource, along with the type of access that is allowed, such as read, write, or execute. In addition, the ACL may also include entries for users or groups that are explicitly denied access to the resource.
+
+The system administrator plays a critical role in change management. Change management is the process of managing changes to the IT infrastructure, including hardware, software, and configuration settings. The system administrator is responsible for implementing and managing change management policies and procedures, which may include the following tasks:
+
+Reviewing and approving change requests: The system administrator must review and approve all change requests to ensure they are valid, necessary, and in compliance with organizational policies and procedures.
+
+Testing and implementing changes: The system administrator is responsible for testing and implementing all approved changes to ensure they do not negatively impact the IT infrastructure.
+
+Maintaining documentation: The system administrator must maintain accurate and up-to-date documentation of all changes made to the IT infrastructure, including the rationale for the change, the change implementation process, and the results of testing.
+
+Monitoring and troubleshooting: The system administrator is responsible for monitoring the IT infrastructure for any issues that may arise as a result of changes, and for troubleshooting and resolving any problems that occur.
+
+
+9.wirite short notes on (Any Two):
+i) Public key cryptography
+ii) Resource allocation graph
+iii) Process Vs thread
+
+i) Public Key Cryptography:
+Public Key Cryptography is a type of encryption technique that uses two different keys, a public key, and a private key, for encrypting and decrypting data. The public key is freely available to anyone, while the private key is kept secret. Data encrypted with the public key can only be decrypted with the corresponding private key, and vice versa. Public Key Cryptography is widely used for secure communication over insecure networks, such as the internet.
+
+ii) Resource Allocation Graph:
+The Resource Allocation Graph is a tool used for deadlock detection in operating systems. It is a graphical representation of the allocation and request of resources by processes in the system. The graph consists of nodes representing processes and resources, and edges representing the allocation of resources to processes and the request of resources by processes. A deadlock condition can be detected if the graph contains a cycle that consists only of processes that are waiting for resources that are held by other processes in the cycle.
+
+iii) Process Vs Thread:
+In computing, a process is an instance of a computer program that is being executed by the operating system, while a thread is a lightweight process that can run concurrently with other threads within the same process. Each process has its own memory space, while threads share the memory space of the process they belong to. Processes are heavyweight entities and have their own system resources, such as CPU, memory, and I/O resources, while threads share the resources of the parent process. Threads are commonly used in multi-threaded applications to improve performance by allowing multiple tasks to run simultaneously within the same process.
+
+
+
